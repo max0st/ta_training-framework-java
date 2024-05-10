@@ -15,6 +15,7 @@ public class ComputeEngine {
     private String localSsd;
     private String datacenterLocation;
     private String committedUsageTerm;
+
     public ComputeEngine(int numberOfInstances, String operatingSystem, String machineFamily, String series, String machineType, String gpuType, int numberOfGPUs, String localSsd, String datacenterLocation, String committedUsageTerm) {
         this.numberOfInstances = numberOfInstances;
         this.operatingSystem = operatingSystem;
@@ -127,5 +128,17 @@ public class ComputeEngine {
     @Override
     public int hashCode() {
         return Objects.hash(numberOfInstances, operatingSystem, provisioningModel, machineFamily, series, machineType, gpuAdded, gpuType, numberOfGPUs, localSsd, datacenterLocation, committedUsageTerm);
+    }
+
+    public String getSeriesFromMachineType() {
+        String fullType = machineType;
+
+        int dashIndex = fullType.indexOf('-');
+
+        if (dashIndex != -1) {
+            return fullType.substring(0, dashIndex);
+        }
+
+        return fullType;
     }
 }

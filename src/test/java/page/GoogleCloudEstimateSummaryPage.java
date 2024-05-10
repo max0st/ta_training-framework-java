@@ -9,17 +9,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GoogleCloudEstimateSummaryPage {
     private final WebDriverWait webDriverWait;
-    @FindBy(xpath = "(//span[@class='Kfvdz'])[10]")
+    @FindBy(xpath = "//span[contains(text(), 'Number of Instances')]/following-sibling::span[@class='Kfvdz']")
     private WebElement txtInstancesNumber;
     @FindBy(xpath = "(//span[@class='Kfvdz'])[12]")
     private WebElement txtProvisioningModel;
     @FindBy(xpath = "(//span[@class='Kfvdz'])[3]")
     private WebElement txtMachineType;
-    @FindBy(xpath = "(//span[@class='Kfvdz'])[16]")
+    @FindBy(xpath = "//span[text()='Add GPUs']/following-sibling::span")
     private WebElement txtAddGPUs;
-    @FindBy(xpath = "(//span[@class='Kfvdz'])[6]")
+    @FindBy(xpath = "//span[text()='Number of GPUs']/following-sibling::span[@class='Kfvdz']")
     private WebElement txtGPUsNumber;
-    @FindBy(xpath = "(//span[@class='Kfvdz'])[7]")
+    @FindBy(xpath = "//span[text()='Local SSD']/following-sibling::span")
     private WebElement txtLocalSSD;
     @FindBy(xpath = "//h4[@class='n8xu5 Nh2Phe D0aEmf']")
     private WebElement estimatedCost;

@@ -9,9 +9,7 @@ import util.TestListener;
 
 @Listeners({TestListener.class})
 public class BaseTest {
-
     protected static WebDriver driver;
-
 
     @BeforeClass
     public static void setUp() {

@@ -62,35 +62,37 @@ public class GoogleCloudCalculatorTest extends BaseTest {
 
     @Test(priority = 3)
     public void testSeriesMatchesExpected() {
-        assertEquals(computeEngine.getSeries(), gcEstimateSummaryPage.retrieveSeriesType());
+        assertEquals(gcEstimateSummaryPage.retrieveSeriesType(), computeEngine.getSeriesFromMachineType());
     }
 
     @Test(priority = 3)
     public void testNumberOfGPUsMatchesExpected() {
-        assertEquals(String.valueOf(computeEngine.getNumberOfGPUs()), gcEstimateSummaryPage.retrieveNumberOfGPUs());
+        assertEquals(gcEstimateSummaryPage.retrieveNumberOfGPUs(), String.valueOf(computeEngine.getNumberOfGPUs()));
     }
 
     @Test(priority = 3)
     public void testNumberOfInstancesMatchesExpected() {
-        assertEquals(String.valueOf(computeEngine.getNumberOfInstances()), gcEstimateSummaryPage.retrieveNumberOfInstances());
+        assertEquals(gcEstimateSummaryPage.retrieveNumberOfInstances(), String.valueOf(computeEngine.getNumberOfInstances()));
     }
 
     @Test(priority = 3)
     public void testLocalSSDMatchesExpected() {
-        assertEquals(computeEngine.getLocalSsd(), gcEstimateSummaryPage.retrieveLocalSSDType());
+        assertEquals(gcEstimateSummaryPage.retrieveLocalSSDType(), computeEngine.getLocalSsd());
     }
+
     @Test(priority = 3)
     public void testProvisioningModelMatchesExpected() {
-        assertEquals(computeEngine.getProvisioningModel(), gcEstimateSummaryPage.retrieveProvisioningModel());
+        assertEquals(gcEstimateSummaryPage.retrieveProvisioningModel(), computeEngine.getProvisioningModel());
     }
+
     @Test(priority = 3)
     public void testIsGPUAddedMatchesExpected() {
-        assertEquals(String.valueOf(computeEngine.isGpuAdded()), gcEstimateSummaryPage.IsGPUAdded());
+        assertEquals(gcEstimateSummaryPage.IsGPUAdded(), String.valueOf(computeEngine.isGpuAdded()));
     }
 
     @Test(priority = 2)
     public void verifyMatchingEstimatedCosts() {
-        assertEquals(estimatedCost, gcEstimateSummaryPage.retrieveEstimatedCost());
+        assertEquals(gcEstimateSummaryPage.retrieveEstimatedCost(), estimatedCost);
     }
 
 }
