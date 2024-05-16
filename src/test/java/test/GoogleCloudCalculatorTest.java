@@ -54,37 +54,37 @@ public class GoogleCloudCalculatorTest extends BaseTest {
     }
 
     @Test(priority = 3)
-    public void testSeries() {
+    public void verifySeriesTest() {
         gcEstimateSummaryPage.assertSeries(computeEngine);
     }
 
     @Test(priority = 3)
-    public void testNumberOfGPUs() {
+    public void verifyNumberOfGPUsTest() {
         gcEstimateSummaryPage.assertNumberOfGPUs(computeEngine);
     }
 
     @Test(priority = 3)
-    public void testNumberOfInstances() {
+    public void verifyNumberOfInstancesTest() {
         gcEstimateSummaryPage.assertNumberOfInstances(computeEngine);
     }
 
     @Test(priority = 3)
-    public void testLocalSSD() {
+    public void verifyLocalSSDTest() {
         gcEstimateSummaryPage.assertSSD(computeEngine);
     }
 
     @Test(priority = 3)
-    public void testProvisioningModel() {
+    public void verifyProvisioningModelTest() {
         gcEstimateSummaryPage.assertProvisioningModel(computeEngine);
     }
 
     @Test(priority = 3)
-    public void testGPUAdded() {
+    public void verifyGPUAddedTest() {
         gcEstimateSummaryPage.assertGPUAdded(computeEngine);
     }
 
     @Test(priority = 2)
-    public void verifyEstimatedCosts() {
+    public void verifyEstimatedCostsTest() {
         gcEstimateSummaryPage.assertEstimatedCost(estimatedCost);
     }
 }
