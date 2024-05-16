@@ -6,16 +6,16 @@ import static service.TestDataReader.getTestData;
 
 public class ComputerEngineCreator {
 
-    public static final String NUMBER_OF_INSTANCES = "testdata.computeEngine.numberOfInstances";
-    public static final String OPERATING_SYSTEM = "testdata.computeEngine.operatingSystem";
-    public static final String MACHINE_FAMILY = "testdata.computeEngine.machineFamily";
-    public static final String SERIES = "testdata.computeEngine.series";
-    public static final String MACHINE_TYPE = "testdata.computeEngine.machineType";
-    public static final String GPU_TYPE = "testdata.computeEngine.gpuType";
-    public static final String NUMBER_OF_GPUS = "testdata.computeEngine.numberOfGpus";
-    public static final String LOCAL_SSD = "testdata.computeEngine.localSSD";
-    public static final String DATACENTER_LOCATION = "testdata.computeEngine.datacenterLocation";
-    public static final String COMMITTED_USAGE_TERM = "testdata.computeEngine.committedUsageTerm";
+    private static final String NUMBER_OF_INSTANCES = "testdata.computeEngine.numberOfInstances";
+    private static final String OPERATING_SYSTEM = "testdata.computeEngine.operatingSystem";
+    private static final String MACHINE_FAMILY = "testdata.computeEngine.machineFamily";
+    private static final String SERIES = "testdata.computeEngine.series";
+    private static final String MACHINE_TYPE = "testdata.computeEngine.machineType";
+    private static final String GPU_TYPE = "testdata.computeEngine.gpuType";
+    private static final String NUMBER_OF_GPUS = "testdata.computeEngine.numberOfGpus";
+    private static final String LOCAL_SSD = "testdata.computeEngine.localSSD";
+    private static final String DATACENTER_LOCATION = "testdata.computeEngine.datacenterLocation";
+    private static final String COMMITTED_USAGE_TERM = "testdata.computeEngine.committedUsageTerm";
 
     public static ComputeEngine createFromProperties() {
         return new ComputeEngine(Integer.parseInt(getTestData(NUMBER_OF_INSTANCES)),
