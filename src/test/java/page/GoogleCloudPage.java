@@ -51,9 +51,6 @@ public class GoogleCloudPage {
         btnSearch.click();
         return new GoogleCloudSearchResultsPage(webDriver, webDriverWait);
     }
-    public void closeBrowser() {
-        webDriver.quit();
-    }
 
     private void waitUntilLoad(WebElement element) {
         webDriverWait.until(ExpectedConditions.visibilityOf(element));

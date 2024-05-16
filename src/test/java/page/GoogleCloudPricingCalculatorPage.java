@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.function.Function;
 
+import static org.testng.Assert.assertTrue;
+
 public class GoogleCloudPricingCalculatorPage {
 
     private final WebDriver webDriver;
@@ -202,8 +204,12 @@ public class GoogleCloudPricingCalculatorPage {
         waitUntilLoad(btnComputerEngine).click();
         return this;
     }
+    public GoogleCloudPricingCalculatorPage verifyPriceCalculated() {
+        assertTrue(isPriceCalculated());
+        return this;
+    }
 
-    public boolean isPriceCalculated() {
+    private boolean isPriceCalculated() {
         Wait<WebDriver> wait = new FluentWait<>(webDriver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofMillis(1500))

@@ -1,15 +1,13 @@
 package test;
 
 
+import data.TestData;
 import model.ComputeEngine;
 import org.testng.annotations.Test;
 import page.GoogleCloudEstimateSummaryPage;
 import page.GoogleCloudPage;
 import page.GoogleCloudPricingCalculatorPage;
 import service.ComputerEngineCreator;
-
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 
 public class GoogleCloudCalculatorTest extends BaseTest {
@@ -20,12 +18,11 @@ public class GoogleCloudCalculatorTest extends BaseTest {
 
     @Test(priority = 1)
     public void testComputeEngineCostEstimationProcess() {
-        String textToSearch = "Google Cloud Platform Pricing Calculator";
         GoogleCloudPage googleCloudPage = new GoogleCloudPage(driver);
         googleCloudPricingCalculatorPage = googleCloudPage
                 .openHomePage()
                 .openSearchTextArea()
-                .inputSearchText(textToSearch)
+                .inputSearchText(TestData.TEXT_TO_SEARCH_ON_GOOGLE_CLOUD_PLATFORM)
                 .startSearch()
                 .openLinkToCalculator()
                 .pressAddToEstimate()
@@ -49,50 +46,45 @@ public class GoogleCloudCalculatorTest extends BaseTest {
                 .chooseLocalSSD(computeEngine.getLocalSsd())
                 .openRegionMenu()
                 .chooseRegion(computeEngine.getDatacenterLocation())
-                .chooseCommittedUsage(computeEngine.getCommittedUsageTerm());
-        validatePriceCalculated();
+                .chooseCommittedUsage(computeEngine.getCommittedUsageTerm())
+                .verifyPriceCalculated();
         estimatedCost = googleCloudPricingCalculatorPage.getEstimatedCost();
         gcEstimateSummaryPage = googleCloudPricingCalculatorPage.pressShareButton()
                 .openLinkEstimateSummary();
     }
 
-    private void validatePriceCalculated() {
-        assertTrue(googleCloudPricingCalculatorPage.isPriceCalculated());
+    @Test(priority = 3)
+    public void testSeries() {
+        gcEstimateSummaryPage.assertSeries(computeEngine);
     }
 
     @Test(priority = 3)
-    public void testSeriesMatchesExpected() {
-        assertEquals(gcEstimateSummaryPage.retrieveSeriesType(), computeEngine.getSeriesFromMachineType());
+    public void testNumberOfGPUs() {
+        gcEstimateSummaryPage.assertNumberOfGPUs(computeEngine);
     }
 
     @Test(priority = 3)
-    public void testNumberOfGPUsMatchesExpected() {
-        assertEquals(gcEstimateSummaryPage.retrieveNumberOfGPUs(), String.valueOf(computeEngine.getNumberOfGPUs()));
+    public void testNumberOfInstances() {
+        gcEstimateSummaryPage.assertNumberOfInstances(computeEngine);
     }
 
     @Test(priority = 3)
-    public void testNumberOfInstancesMatchesExpected() {
-        assertEquals(gcEstimateSummaryPage.retrieveNumberOfInstances(), String.valueOf(computeEngine.getNumberOfInstances()));
+    public void testLocalSSD() {
+        gcEstimateSummaryPage.assertSSD(computeEngine);
     }
 
     @Test(priority = 3)
-    public void testLocalSSDMatchesExpected() {
-        assertEquals(gcEstimateSummaryPage.retrieveLocalSSDType(), computeEngine.getLocalSsd());
+    public void testProvisioningModel() {
+        gcEstimateSummaryPage.assertProvisioningModel(computeEngine);
     }
 
     @Test(priority = 3)
-    public void testProvisioningModelMatchesExpected() {
-        assertEquals(gcEstimateSummaryPage.retrieveProvisioningModel(), computeEngine.getProvisioningModel());
-    }
-
-    @Test(priority = 3)
-    public void testIsGPUAddedMatchesExpected() {
-        assertEquals(gcEstimateSummaryPage.IsGPUAdded(), String.valueOf(computeEngine.isGpuAdded()));
+    public void testGPUAdded() {
+        gcEstimateSummaryPage.assertGPUAdded(computeEngine);
     }
 
     @Test(priority = 2)
-    public void verifyMatchingEstimatedCosts() {
-        assertEquals(gcEstimateSummaryPage.retrieveEstimatedCost(), estimatedCost);
+    public void verifyEstimatedCosts() {
+        gcEstimateSummaryPage.assertEstimatedCost(estimatedCost);
     }
-
 }
