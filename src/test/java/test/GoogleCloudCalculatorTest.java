@@ -58,7 +58,7 @@ public class GoogleCloudCalculatorTest extends BaseTest {
     /**
      * This test method is included to demonstrate that multiple test suites can
      * operate independently. It is included only in the testng-all suite to showcase
-     * different configurations for separate execution paths in the test environment.
+     * different configurations for separate execution paths.
      */
     @Test
     public void testVerifyEstimatedCost() {
