@@ -9,20 +9,16 @@ import page.GoogleCloudPage;
 import page.GoogleCloudPricingCalculatorPage;
 import service.ComputerEngineCreator;
 
-import static org.testng.Assert.assertEquals;
-
-
 public class GoogleCloudCalculatorTest extends BaseTest {
+    private final ComputeEngine computeEngine = ComputerEngineCreator.createFromProperties();
     private GoogleCloudEstimateSummaryPage gcEstimateSummaryPage;
     private String estimatedCost;
     private GoogleCloudPricingCalculatorPage googleCloudPricingCalculatorPage;
-    private ComputeEngine computeEngine = ComputerEngineCreator.createFromProperties();
 
     @Test
     public void testComputeEngineCostEstimationProcess() {
         GoogleCloudPage googleCloudPage = new GoogleCloudPage(driver);
-        googleCloudPricingCalculatorPage = googleCloudPage
-                .openHomePage()
+        googleCloudPricingCalculatorPage = googleCloudPage.openHomePage()
                 .openSearchTextArea()
                 .inputSearchText(TestData.TEXT_TO_SEARCH_ON_GOOGLE_CLOUD_PLATFORM)
                 .startSearch()
@@ -32,11 +28,9 @@ public class GoogleCloudCalculatorTest extends BaseTest {
                 .specifyInstancesNumber(computeEngine.getNumberOfInstances())
                 .openOperatingSystemMenu()
                 .chooseOperatingSystem(computeEngine.getOperatingSystem())
-                .chooseRegular()
-                .openMachineFamilyMenu()
+                .chooseRegular().openMachineFamilyMenu()
                 .chooseMachineFamily(computeEngine.getMachineFamily())
-                .openSeriesMenu()
-                .chooseSeries(computeEngine.getSeries())
+                .openSeriesMenu().chooseSeries(computeEngine.getSeries())
                 .openMachineTypeMenu()
                 .chooseMachineType(computeEngine.getMachineType())
                 .addGPU()
@@ -60,8 +54,14 @@ public class GoogleCloudCalculatorTest extends BaseTest {
                 .verifyLocalSSDTest(computeEngine)
                 .verifyProvisioningModelTest(computeEngine);
     }
+
+    /**
+     * This test method is included to demonstrate that multiple test suites can
+     * operate independently. It is included only in the testng-all suite to showcase
+     * different configurations for separate execution paths in the test environment.
+     */
     @Test
     public void testVerifyEstimatedCost() {
-
+        gcEstimateSummaryPage.verifyEstimatedCost(estimatedCost);
     }
 }

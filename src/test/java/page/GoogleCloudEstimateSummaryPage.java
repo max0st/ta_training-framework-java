@@ -112,7 +112,7 @@ public class GoogleCloudEstimateSummaryPage {
         assertGPUAdded(computeEngine);
         return this;
     }
-    public GoogleCloudEstimateSummaryPage verifyGPUAddedTest(String estimatedCost) {
+    public GoogleCloudEstimateSummaryPage verifyEstimatedCost(String estimatedCost) {
         assertEstimatedCost(estimatedCost);
         return this;
     }
