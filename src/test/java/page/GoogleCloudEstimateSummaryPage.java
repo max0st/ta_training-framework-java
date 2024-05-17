@@ -49,7 +49,7 @@ public class GoogleCloudEstimateSummaryPage {
         return waitUntilLoad(txtGPUsNumber).getText();
     }
 
-    private String retrieveEstimatedCost() {
+    public String retrieveEstimatedCost() {
         return waitUntilLoad(estimatedCost).getText();
     }
 
@@ -77,31 +77,71 @@ public class GoogleCloudEstimateSummaryPage {
         return webDriverWait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void assertSeries(ComputeEngine computeEngine) {
+
+
+    public GoogleCloudEstimateSummaryPage verifySeriesTest(ComputeEngine computeEngine) {
+        assertSeries(computeEngine);
+        return this;
+    }
+
+
+    public GoogleCloudEstimateSummaryPage verifyNumberOfGPUsTest(ComputeEngine computeEngine) {
+        assertNumberOfGPUs(computeEngine);
+        return this;
+    }
+
+
+    public GoogleCloudEstimateSummaryPage verifyNumberOfInstancesTest(ComputeEngine computeEngine) {
+        assertNumberOfInstances(computeEngine);
+        return this;
+    }
+
+
+    public GoogleCloudEstimateSummaryPage verifyLocalSSDTest(ComputeEngine computeEngine) {
+        assertSSD(computeEngine);
+        return this;
+    }
+
+    public GoogleCloudEstimateSummaryPage verifyProvisioningModelTest(ComputeEngine computeEngine) {
+        assertProvisioningModel(computeEngine);
+        return this;
+    }
+
+
+    public GoogleCloudEstimateSummaryPage verifyGPUAddedTest(ComputeEngine computeEngine) {
+        assertGPUAdded(computeEngine);
+        return this;
+    }
+    public GoogleCloudEstimateSummaryPage verifyGPUAddedTest(String estimatedCost) {
+        assertEstimatedCost(estimatedCost);
+        return this;
+    }
+
+    private void assertSeries(ComputeEngine computeEngine) {
         assertEquals(retrieveSeriesType(), computeEngine.getSeriesFromMachineType());
     }
 
-    public void assertSSD(ComputeEngine computeEngine) {
+    private void assertSSD(ComputeEngine computeEngine) {
         assertEquals(retrieveLocalSSDType(), computeEngine.getLocalSsd());
     }
 
-    public void assertNumberOfGPUs(ComputeEngine computeEngine) {
+    private void assertNumberOfGPUs(ComputeEngine computeEngine) {
         assertEquals(retrieveNumberOfGPUs(), String.valueOf(computeEngine.getNumberOfGPUs()));
     }
 
-    public void assertNumberOfInstances(ComputeEngine computeEngine) {
+    private void assertNumberOfInstances(ComputeEngine computeEngine) {
         assertEquals(retrieveNumberOfInstances(), String.valueOf(computeEngine.getNumberOfInstances()));
     }
 
-    public void assertProvisioningModel(ComputeEngine computeEngine) {
+    private void assertProvisioningModel(ComputeEngine computeEngine) {
         assertEquals(retrieveProvisioningModel(), computeEngine.getProvisioningModel());
     }
 
-    public void assertGPUAdded(ComputeEngine computeEngine) {
+    private void assertGPUAdded(ComputeEngine computeEngine) {
         assertEquals(retrieveGPUAdded(), String.valueOf(computeEngine.isGpuAdded()));
     }
 
-    public void assertEstimatedCost(String estimatedCost) {
+    private void assertEstimatedCost(String estimatedCost) {
         assertEquals(retrieveEstimatedCost(), estimatedCost);
     }
 }

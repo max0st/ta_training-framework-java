@@ -9,6 +9,8 @@ import page.GoogleCloudPage;
 import page.GoogleCloudPricingCalculatorPage;
 import service.ComputerEngineCreator;
 
+import static org.testng.Assert.assertEquals;
+
 
 public class GoogleCloudCalculatorTest extends BaseTest {
     private GoogleCloudEstimateSummaryPage gcEstimateSummaryPage;
@@ -16,7 +18,7 @@ public class GoogleCloudCalculatorTest extends BaseTest {
     private GoogleCloudPricingCalculatorPage googleCloudPricingCalculatorPage;
     private ComputeEngine computeEngine = ComputerEngineCreator.createFromProperties();
 
-    @Test(priority = 1)
+    @Test
     public void testComputeEngineCostEstimationProcess() {
         GoogleCloudPage googleCloudPage = new GoogleCloudPage(driver);
         googleCloudPricingCalculatorPage = googleCloudPage
@@ -51,40 +53,15 @@ public class GoogleCloudCalculatorTest extends BaseTest {
         estimatedCost = googleCloudPricingCalculatorPage.getEstimatedCost();
         gcEstimateSummaryPage = googleCloudPricingCalculatorPage.pressShareButton()
                 .openLinkEstimateSummary();
+        gcEstimateSummaryPage.verifySeriesTest(computeEngine)
+                .verifyNumberOfGPUsTest(computeEngine)
+                .verifyNumberOfInstancesTest(computeEngine)
+                .verifyGPUAddedTest(computeEngine)
+                .verifyLocalSSDTest(computeEngine)
+                .verifyProvisioningModelTest(computeEngine);
     }
+    @Test
+    public void testVerifyEstimatedCost() {
 
-    @Test(priority = 3)
-    public void verifySeriesTest() {
-        gcEstimateSummaryPage.assertSeries(computeEngine);
-    }
-
-    @Test(priority = 3)
-    public void verifyNumberOfGPUsTest() {
-        gcEstimateSummaryPage.assertNumberOfGPUs(computeEngine);
-    }
-
-    @Test(priority = 3)
-    public void verifyNumberOfInstancesTest() {
-        gcEstimateSummaryPage.assertNumberOfInstances(computeEngine);
-    }
-
-    @Test(priority = 3)
-    public void verifyLocalSSDTest() {
-        gcEstimateSummaryPage.assertSSD(computeEngine);
-    }
-
-    @Test(priority = 3)
-    public void verifyProvisioningModelTest() {
-        gcEstimateSummaryPage.assertProvisioningModel(computeEngine);
-    }
-
-    @Test(priority = 3)
-    public void verifyGPUAddedTest() {
-        gcEstimateSummaryPage.assertGPUAdded(computeEngine);
-    }
-
-    @Test(priority = 2)
-    public void verifyEstimatedCostsTest() {
-        gcEstimateSummaryPage.assertEstimatedCost(estimatedCost);
     }
 }

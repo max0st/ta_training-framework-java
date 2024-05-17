@@ -4,7 +4,8 @@
         <classes>
             <class name="test.GoogleCloudCalculatorTest">
                 <methods>
-                    <include name="testComputeEngineCostEstimationProcess" />
+                    <include name="testComputeEngineCostEstimationProcess"/>
+                    <exclude name="testVerifyEstimatedCost"/>
                 </methods>
             </class>
         </classes>
